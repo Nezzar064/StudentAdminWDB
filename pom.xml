@@ -8,7 +8,7 @@
   <artifactId>StudentAdministration</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>StudentAdministration</name>
+  <name>StudentAdminWDB</name>
   <url>http://maven.apache.org</url>
 
   <properties>
