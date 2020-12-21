@@ -5,8 +5,7 @@ import java.sql.SQLException;
 public class StudentService {
 
     //update after the user is finished changing shit (not now)
-    DBController controller = new DBController();
-    //StudentDAO studentDAO = new StudentDAO();
+    StudentDAO studentDAO = new StudentDAO();
 
     public StudentService() {
     }
@@ -16,7 +15,7 @@ public class StudentService {
         CW.print("Please enter the new name: ");
         name = UserInput.strIn();
         student.setName(name);
-        controller.studentUpdater(student);
+        studentDAO.save(student);
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(name));
         CW.newLine();
@@ -27,7 +26,7 @@ public class StudentService {
         CW.print("Please enter the new date of birth: ");
         birthDate = UserInput.strIn();
         student.setBirthDate(birthDate);
-        controller.studentUpdater(student);
+        studentDAO.save(student);
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(birthDate));
         CW.newLine();
@@ -38,7 +37,7 @@ public class StudentService {
         CW.print("Please enter the new birth year: ");
         birthYear = UserInput.strIn();
         student.setBirthYear(birthYear);
-        controller.studentUpdater(student);
+        studentDAO.save(student);
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(birthYear));
         CW.newLine();
@@ -49,7 +48,7 @@ public class StudentService {
         CW.print("Please enter the new address: ");
         address = UserInput.strIn();
         student.setAddress(address);
-        controller.studentUpdater(student);
+        studentDAO.save(student);
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(address));
         CW.newLine();
@@ -60,7 +59,7 @@ public class StudentService {
         CW.print("Please enter the new phone number: ");
         phone = UserInput.strIn();
         student.setPhone(phone);
-        controller.studentUpdater(student);
+        studentDAO.save(student);
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(phone));
         CW.newLine();
@@ -72,7 +71,7 @@ public class StudentService {
         CW.print("Please enter the new program: ");
         program = UserInput.strIn();
         student.setProgram(program);
-        controller.studentUpdater(student);
+        studentDAO.save(student);;
         CW.newLine();
         CW.print(CW.infoChangeSuccessForVar(program));
         CW.newLine();

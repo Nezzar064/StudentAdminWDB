@@ -161,6 +161,7 @@ public class StudentOutput {
         CW.print("Program: " + students.get(i).getProgram());
     }
 
+    /*
     private Student createMember() {
 
         CW.print("Please enter the students name: ");
@@ -185,4 +186,6 @@ public class StudentOutput {
 
         return new Student(name, birthDate, birthYear, address, phone, program);
     }
+    
+     */
 }

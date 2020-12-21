@@ -6,8 +6,7 @@ public class Menu {
     StudentService service = new StudentService();
     StudentOutput output = new StudentOutput();
     StudIdChecker studIdChecker = new StudIdChecker();
-    DBController DB = new DBController();
-    DBFetcher fetch = new DBFetcher();
+    StudentDAO studentDAO = new StudentDAO();
 
     public void mainMenu() {
         boolean userContinue = true;
@@ -43,7 +42,7 @@ public class Menu {
                         studentListMenu();
                         break;
                     case 5:
-                        output.getNumberOfStudents(studentDAO.studentDbCounter());
+                        output.getNumberOfStudents(studentDAO.studDbCounter());
                         break;
                     case 6:
                         CW.newLine();

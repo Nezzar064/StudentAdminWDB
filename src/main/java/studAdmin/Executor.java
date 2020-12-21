@@ -1,9 +1,7 @@
 package studAdmin;
 
-import java.sql.SQLException;
-
 public class Executor {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Menu menu = new Menu();
         menu.mainMenu();
     }
