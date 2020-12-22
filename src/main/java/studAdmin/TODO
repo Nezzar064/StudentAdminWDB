@@ -13,6 +13,11 @@ Search for students via name, not ID.
 Changefunctions -> StudentService (back end)
 ListFunctions -> StudentOutput (front end)
 
+TODO: DO THIS FIRST
+Fix lists for getting single variables instead of everything
+Move StudentService stuff to controller
+
+
 Unique fix? Hvis to hedder det samme etc.
 Klassenavne??
 Setters ligger i service, som får infoen fra output via String name... osv,

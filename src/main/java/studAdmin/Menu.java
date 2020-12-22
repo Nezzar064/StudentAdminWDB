@@ -2,30 +2,12 @@ package studAdmin;
 
 import java.util.InputMismatchException;
 
-//TODO for Pete
-/*
-StudentService.java:
-My idea is to seperate this:
-
-student.setBirthYear(birthYear);
-        studentDAO.save(student);
-
-for example, so the input stuff maybe goes to its own class, instead of it being handled in the same function. id like the front end out of it, eg all the CW.print(xxx),
-so its only backend work in the methods. Or maybe keep the variable assignments and just move out the front end CW stuff? idk if this is the right way or not.
-
-Menu.java:
-
-method setStudent should be moved to the service class instead, but it contains both front end and backend, eg the messages with prompts (what we talked about), where do i move this?
-Can i just get the variables from a method, then do return new Student(variables), or will that not work with the database since i do setName(name) for each variable?
-
- */
-
-
 public class Menu {
     StudentService service = new StudentService();
     StudentOutput output = new StudentOutput();
     StudIdChecker studIdChecker = new StudIdChecker();
     StudentDAO studentDAO = new StudentDAO();
+    Controller controller = new Controller();
 
     public void mainMenu() {
         boolean userContinue = true;
@@ -35,7 +17,7 @@ public class Menu {
                 switch (UserInput.intIn.nextInt()) {
                     case 1:
                         CW.newLine();
-                        studentDAO.add(setStudent());
+                        setStudent();
                         CW.newLine();
                         CW.print("Student successfully added to the system!");
                         CW.newLine();
@@ -48,7 +30,7 @@ public class Menu {
                         break;
                     case 3:
                         CW.newLine();
-                        Student foundStudent = studIdChecker.IdCheck(studentDAO.getAll());
+                        Student foundStudent = studIdChecker.IdCheck(controller.getAll());
                         if (foundStudent != null) {
                             CW.newLine();
                             infoChangeMenu(foundStudent);
@@ -103,10 +85,9 @@ public class Menu {
         return UserInput.intIn.nextInt();
     }
 
-    private Student setStudent() {
-        Student stud = new Student();
+    private void setStudent() {
         CW.print("Please enter the students name: ");
-        stud.setName(UserInput.in.nextLine());
+        String name = UserInput.in.nextLine();
 
         CW.print("Please enter the students date of birth: ");
         stud.setBirthDate(UserInput.in.nextLine());
@@ -123,7 +104,7 @@ public class Menu {
         CW.print("Please enter the students program: ");
         stud.setProgram(UserInput.in.nextLine());
 
-        return stud;
+        controller.add(name, blabla);
     }
 
     public void infoChangeMenu(Student student) {
@@ -133,7 +114,12 @@ public class Menu {
             switch (UserInput.intIn.nextInt()) {
                 case 1:
                     CW.newLine();
-                    service.changeName(student);
+                    CW.print("Please enter the new name: ");
+                    String name = UserInput.in.nextLine();
+                    service.changeName(student, name);
+                    CW.newLine();
+                    CW.print(CW.infoChangeSuccessForVar(name));
+                    CW.newLine();
                     break;
                 case 2:
                     CW.newLine();
@@ -191,22 +177,22 @@ public class Menu {
             try {
                 switch (UserInput.intIn.nextInt()) {
                     case 1:
-                        output.listAllStudents(studentDAO.getAll());
+                        output.listAllStudents(controller.getAll());
                         break;
                     case 2:
-                        output.listNameAndId(studentDAO.getAll());
+                        output.listNameAndId(controller.getAll());
                         break;
                     case 3:
-                        output.listStudentInfoByID(studentDAO.getAll());
+                        output.listStudentInfoByID(controller.getAll());
                         break;
                     case 4:
-                        output.findNumbStudentsByProgram(studentDAO.getAll());
+                        output.findNumbStudentsByProgram(controller.getAll());
                         break;
                     case 5:
-                        output.findStudentsByProgram(studentDAO.getAll());
+                        output.findStudentsByProgram(controller.getAll());
                         break;
                     case 6:
-                        output.findStudentsByBirthYear(studentDAO.getAll());
+                        output.findStudentsByBirthYear(controller.getAll());
                         break;
                     case 7:
                         CW.newLine();
