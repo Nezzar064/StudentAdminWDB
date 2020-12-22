@@ -2,6 +2,25 @@ package studAdmin;
 
 import java.util.InputMismatchException;
 
+//TODO for Pete
+/*
+StudentService.java:
+My idea is to seperate this:
+
+student.setBirthYear(birthYear);
+        studentDAO.save(student);
+
+for example, so the input stuff maybe goes to its own class, instead of it being handled in the same function. id like the front end out of it, eg all the CW.print(xxx),
+so its only backend work in the methods. Or maybe keep the variable assignments and just move out the front end CW stuff? idk if this is the right way or not.
+
+Menu.java:
+
+method setStudent should be moved to the service class instead, but it contains both front end and backend, eg the messages with prompts (what we talked about), where do i move this?
+Can i just get the variables from a method, then do return new Student(variables), or will that not work with the database since i do setName(name) for each variable?
+
+ */
+
+
 public class Menu {
     StudentService service = new StudentService();
     StudentOutput output = new StudentOutput();
