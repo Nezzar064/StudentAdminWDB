@@ -45,6 +45,10 @@ public class CW {
         return "System has no students assigned to ID: (" + id + ")! Returning to menu";
     }
 
+    public static String noProgramsRegistered() {
+        return "System has no programs registered!";
+    }
+
     public static String infoChangeSuccessForVar(String var) {
         return "Information successfully changed to: " + var;
     }

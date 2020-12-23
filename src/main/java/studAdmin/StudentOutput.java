@@ -55,6 +55,7 @@ public class StudentOutput {
                     }
                 }
                 if (students.get(i).getId() != id) {
+                    CW.newLine();
                     CW.print(CW.noIntInRegisteredForStudentsMsg(id));
                 }
                 CW.newLine();
@@ -75,21 +76,23 @@ public class StudentOutput {
             int j = 0;
             CW.newLine();
             CW.print("Please specify student program: ");
-            program = UserInput.strIn();
+            program = UserInput.in.nextLine();
             CW.newLine();
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).getProgram().equals(program)) {
                     j++;
                 }
             }
-            if (!students.get(i).getProgram().equals(program)) {
-                CW.print(CW.noVarInRegisteredForStudentsMsg(program));
+            if (students.get(i).getProgram().equals(program)) {
+                CW.print("Number of students assigned to: " + program);
+                CW.newLine();
+                CW.print("*" + j + "*");
                 CW.newLine();
             }
-            CW.print("Number of students assigned to: " + program);
-            CW.newLine();
-            CW.print("*" + j + "*");
-            CW.newLine();
+            if (!students.get(i).getProgram().equals(program)) {
+                CW.newLine();
+                CW.print(CW.noVarInRegisteredForStudentsMsg(program));
+            }
         } else {
             CW.newLine();
             CW.print(CW.noStudentsRegisteredMsg());
@@ -100,18 +103,21 @@ public class StudentOutput {
         if (!students.isEmpty()) {
             CW.newLine();
             CW.print("Please specify student program: ");
-            program = UserInput.strIn();
+            program = UserInput.in.nextLine();
             CW.newLine();
-            CW.print("*Students assigned to: " + program + "*");
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).getProgram().equals(program)) {
                     CW.newLine();
                     CW.print("ID: " + students.get(i).getId() + ", " + students.get(i).getName());
-                } else if (i == students.size()) {
-                    CW.print(CW.noVarInRegisteredForStudentsMsg(program));
+                } else if (i == 0) {
+                    CW.print(CW.noProgramsRegistered());
                 }
             }
+            if (students.get(i).getProgram().equals(program)) {
+                CW.print("*Students assigned to: " + program + "*");
+            }
             if (!students.get(i).getProgram().equals(program)) {
+                CW.newLine();
                 CW.print(CW.noVarInRegisteredForStudentsMsg(program));
             }
             CW.newLine();
@@ -125,16 +131,19 @@ public class StudentOutput {
         if (!students.isEmpty()) {
             CW.newLine();
             CW.print("Please specify student birth year: ");
-            String birthYear = UserInput.strIn();
+            String birthYear = UserInput.in.nextLine();
             CW.newLine();
-            CW.print("*Students born in: " + birthYear + "*");
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).getBirthYear().equals(birthYear)) {
                     CW.newLine();
                     CW.print("ID: " + students.get(i).getId() + ", " + students.get(i).getName());
                 }
             }
+            if (students.get(i).getProgram().equals(birthYear)) {
+                CW.print("*Students assigned to: " + birthYear + "*");
+            }
             if (!students.get(i).getBirthYear().equals(birthYear)) {
+                CW.newLine();
                 CW.print(CW.noVarInRegisteredForStudentsMsg(birthYear));
             }
             CW.newLine();
@@ -160,32 +169,4 @@ public class StudentOutput {
         CW.print("Phone: " + students.get(i).getPhone());
         CW.print("Program: " + students.get(i).getProgram());
     }
-
-    /*
-    private Student createMember() {
-
-        CW.print("Please enter the students name: ");
-        String name = UserInput.in.nextLine();
-
-
-        CW.print("Please enter the students date of birth: ");
-        String birthDate = UserInput.in.nextLine();
-
-
-        CW.print("Please enter the students birth year: ");
-        String birthYear = UserInput.in.nextLine();
-
-        CW.print("Please enter the students address: ");
-        String address = UserInput.in.nextLine();
-
-        CW.print("Please enter the students phone number: ");
-        String phone = UserInput.in.nextLine();
-
-        CW.print("Please enter the students program: ");
-        String program = UserInput.in.nextLine();
-
-        return new Student(name, birthDate, birthYear, address, phone, program);
-    }
-    
-     */
 }
