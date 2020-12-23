@@ -3,10 +3,9 @@ package studAdmin;
 import java.util.InputMismatchException;
 
 public class Menu {
-    StudentService service = new StudentService();
+
     StudentOutput output = new StudentOutput();
     StudIdChecker studIdChecker = new StudIdChecker();
-    StudentDAO studentDAO = new StudentDAO();
     Controller controller = new Controller();
 
     public void mainMenu() {
@@ -21,12 +20,10 @@ public class Menu {
                         CW.newLine();
                         CW.print("Student successfully added to the system!");
                         CW.newLine();
-                        //studEditor.addStudent(students, programs);
                         break;
                     case 2:
                         CW.newLine();
-                        studentDAO.delete(inputId());
-                        //studEditor.deleteStudent(students);
+                        controller.delete(inputId());
                         break;
                     case 3:
                         CW.newLine();
@@ -43,7 +40,7 @@ public class Menu {
                         studentListMenu();
                         break;
                     case 5:
-                        output.getNumberOfStudents(studentDAO.studDbCounter());
+                        output.getNumberOfStudents(controller.studDbCounter());
                         break;
                     case 6:
                         CW.newLine();
@@ -90,21 +87,21 @@ public class Menu {
         String name = UserInput.in.nextLine();
 
         CW.print("Please enter the students date of birth: ");
-        stud.setBirthDate(UserInput.in.nextLine());
+        String birthDate = UserInput.in.nextLine();
 
         CW.print("Please enter the students birth year: ");
-        stud.setBirthYear(UserInput.in.nextLine());
+        String birthYear = UserInput.in.nextLine();
 
         CW.print("Please enter the students address: ");
-        stud.setAddress(UserInput.in.nextLine());
+        String address = UserInput.in.nextLine();
 
         CW.print("Please enter the students phone number: ");
-        stud.setPhone(UserInput.in.nextLine());
+        String phone = UserInput.in.nextLine();
 
         CW.print("Please enter the students program: ");
-        stud.setProgram(UserInput.in.nextLine());
+        String program = UserInput.in.nextLine();
 
-        controller.add(name, blabla);
+        controller.add(name, birthDate, birthYear, address, phone, program);
     }
 
     public void infoChangeMenu(Student student) {
@@ -116,30 +113,48 @@ public class Menu {
                     CW.newLine();
                     CW.print("Please enter the new name: ");
                     String name = UserInput.in.nextLine();
-                    service.changeName(student, name);
-                    CW.newLine();
-                    CW.print(CW.infoChangeSuccessForVar(name));
-                    CW.newLine();
+                    controller.changeName(student, name);
+                    successMsg(name);
                     break;
                 case 2:
                     CW.newLine();
-                    service.changeDOB(student);
+                    CW.print("Please enter the new date of birth: ");
+                    String birthDate = UserInput.in.nextLine();
+                    CW.newLine();
+                    controller.changeDOB(student, birthDate);
+                    successMsg(birthDate);
                     break;
                 case 3:
                     CW.newLine();
-                    service.changeBirthYear(student);
+                    CW.print("Please enter the new birth year: ");
+                    String birthYear = UserInput.in.nextLine();
+                    CW.newLine();
+                    controller.changeBirthYear(student, birthYear);
+                    successMsg(birthYear);
                     break;
                 case 4:
                     CW.newLine();
-                    service.changeAddress(student);
+                    CW.print("Please enter the new address: ");
+                    String address = UserInput.in.nextLine();;
+                    CW.newLine();
+                    controller.changeAddress(student, address);
+                    successMsg(address);
                     break;
                 case 5:
                     CW.newLine();
-                    service.changePhoneNumber(student);
+                    CW.print("Please enter the new phone number: ");
+                    String phone = UserInput.in.nextLine();
+                    CW.newLine();
+                    controller.changePhoneNumber(student, phone);
+                    successMsg(phone);
                     break;
                 case 6:
                     CW.newLine();
-                    service.changeProgram(student);
+                    CW.print("Please enter the new program: ");
+                    String program = UserInput.in.nextLine();
+                    CW.newLine();
+                    controller.changeProgram(student, program);
+                    successMsg(program);
                     break;
                 case 7:
                     CW.newLine();
@@ -155,6 +170,12 @@ public class Menu {
                     infoChangeMenu(student);
             }
         }
+    }
+
+    private void successMsg(String var) {
+        CW.newLine();
+        CW.print(CW.infoChangeSuccessForVar(var));
+        CW.newLine();
     }
 
     private void infoChangeMenuOptions() {

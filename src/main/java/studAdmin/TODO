@@ -1,29 +1,18 @@
 //Format: TODO + PRIORITY/NUMBER
-(Low Priority atm): Begin designing GUI via Spring
-maybe add in Map instead, make use of more advanced techniques
 API is the nextttttt one
 Implement spring?
 
 Username and password integration, look in studentportal if needed. maybe encrypt password with jbCrypt.
 Make a greeter message when logging in
-DAO
-Move frontend from backend, so its seperated. Eg. database stuff in DAO, addStudent gets info from studentService etc etc.
 Change primary key so its standalone, needs to be a sequence instead of autoincrement, make a seperate ID for students.
 Search for students via name, not ID.
 Changefunctions -> StudentService (back end)
 ListFunctions -> StudentOutput (front end)
 
 TODO: DO THIS FIRST
-Fix lists for getting single variables instead of everything
-Move StudentService stuff to controller
-
+Fix lists for getting single variables instead of everything in controller (for listfunctions, idchecker)
 
 Unique fix? Hvis to hedder det samme etc.
-Klassenavne??
-Setters ligger i service, som får infoen fra output via String name... osv,
-og returner new Student(name, ...).
-Private objects i constructor, ikke opret objecter på kryds og tværs men gør det i menuén.
-Evt se macbook for hjælp (delfinen)
 
 
 //After this, the program is basically done.
@@ -31,23 +20,15 @@ Evt se macbook for hjælp (delfinen)
 https://www.tutorialspoint.com/spring/index.htm
 https://www.liquidweb.com/kb/what-is-rest-api-an-overview/
 https://www.tutorialspoint.com/microservice_architecture/microservice_architecture_introduction.htm
-https://www.guru99.com/java-swing-gui.html
-https://www.formdev.com/jformdesigner/doc/ides/intellij-idea/
-https://steemit.com/programming/@worll/simple-intellij-java-gui-example-tutorial
 https://www.tutorialspoint.com/hibernate/hibernate_or_mappings.htm
 https://www.tutorialspoint.com/hibernate/hibernate_mapping_files.htm
 
-Javascript w. angular for GUI? otherwise start with simple Swing GUI.
-
+Javascript w. angular for GUI? otherwise start with simple Swing GUI or Spring.
 
 Reasoning for UserInput and CW still static:
 The object doesn't require anything, and the methods (mostly) require very little to setup.
 They are less objects in a OOP sense, more just utility classes.
 
-Database stuff (See Hibernate/MySQL.txt, FirstHibernate project)
-
-Relation:
-https://www.baeldung.com/hibernate-one-to-many
 
 
 
