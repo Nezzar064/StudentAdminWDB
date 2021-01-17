@@ -1,47 +1,27 @@
 package studAdmin;
 
-import javax.persistence.*;
-import java.io.Serializable;
+public class Student {
 
-@Entity
-@Table(name = "students")
-public class Student implements Serializable {
+    //If you change the object, remember to change in mapper as well.
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id", unique = true)
     private int id;
-
-    @Column (name = "name", unique = true)
     private String name;
-
-    @Column (name = "birthdate", unique = true)
     private String birthDate;
-
-    @Column (name = "birthyear", unique = true)
     private String birthYear;
-
-    @Column (name = "address", unique = true)
     private String address;
-
-    @Column (name = "phone", unique = true)
     private String phone;
-
-    @Column (name = "program", unique = true)
     private String program;
 
     @Override
     public String toString() {
         return
                 "ID: " + "\"" + id + "\"" + "\n" +
-                "Name: " + "\"" +  name + "\"" + "\n" +
-                "Birth Date: " + "\"" + birthDate + "\"" + "\n" +
-                "Birth Year: " + "\"" + birthYear + "\"" + "\n" +
-                "Address: " + "\"" + address + "\"" + "\n" +
-                "Phone: " + "\"" + phone + "\"" + "\n" +
-                "Program: " + "\"" + program + "\"" + "\n"
+                        "Name: " + "\"" + name + "\"" + "\n" +
+                        "Birth Date: " + "\"" + birthDate + "\"" + "\n" +
+                        "Birth Year: " + "\"" + birthYear + "\"" + "\n" +
+                        "Address: " + "\"" + address + "\"" + "\n" +
+                        "Phone: " + "\"" + phone + "\"" + "\n" +
+                        "Program: " + "\"" + program + "\"" + "\n"
                 ;
     }
 
@@ -124,3 +104,4 @@ public class Student implements Serializable {
     }
 
 }
+

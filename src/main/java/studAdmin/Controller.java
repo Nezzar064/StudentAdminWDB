@@ -5,12 +5,13 @@ import java.util.List;
 public class Controller {
 
     StudentDAO studentDAO = new StudentDAO();
+    StudentMapper mapper = new StudentMapper();
 
     public Controller() {
     }
 
     public void add(String name, String birthDate, String birthYear, String address, String phone, String program) {
-        Student student = new Student();
+        StudentDB student = new StudentDB();
         student.setName(name);
         student.setBirthDate(birthDate);
         student.setBirthYear(birthYear);
@@ -25,7 +26,8 @@ public class Controller {
     }
 
     public List<Student> getAll() {
-        return studentDAO.getAll();
+        List<StudentDB> students = studentDAO.getAll();
+        return mapper.mapListFromDatabaseList(students);
     }
 
     public List<String> studDbCounter() {
@@ -34,32 +36,38 @@ public class Controller {
 
     public void changeName(Student student, String name) {
         student.setName(name);
-        studentDAO.save(student);
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
     public void changeDOB(Student student, String birthDate) {
         student.setBirthDate(birthDate);
-        studentDAO.save(student);
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
     public void changeBirthYear(Student student, String birthYear) {
         student.setBirthYear(birthYear);
-        studentDAO.save(student);
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
     public void changeAddress(Student student, String address) {
         student.setAddress(address);
-        studentDAO.save(student);
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
     public void changePhoneNumber(Student student, String phone) {
         student.setPhone(phone);
-        studentDAO.save(student);
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
     public void changeProgram(Student student, String program) {
         student.setProgram(program);
-        studentDAO.save(student);;
+        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
+        studentDAO.save(databaseStudent);
     }
 
 

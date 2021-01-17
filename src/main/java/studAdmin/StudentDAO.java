@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class StudentDAO implements Dao<Student> {
+public class StudentDAO implements Dao<StudentDB> {
 
     private EntityManager entityManager;
 
@@ -21,20 +21,20 @@ public class StudentDAO implements Dao<Student> {
     }
 
     @Override
-    public Optional<Student> get(int id) {
+    public Optional<StudentDB> get(int id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Student> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM Student e");
-        List<Student> students;
+    public List<StudentDB> getAll() {
+        Query query = entityManager.createQuery("SELECT e FROM StudentDB e");
+        List<StudentDB> students;
         students = query.getResultList();
         return students;
     }
 
     @Override
-    public void add(Student student) {
+    public void add(StudentDB student) {
         EntityTransaction et = null;
         try {
             et = entityManager.getTransaction();
@@ -52,18 +52,18 @@ public class StudentDAO implements Dao<Student> {
     }
 
     @Override
-    public void save(Student student) {
+    public void save(StudentDB student) {
         executeInsideTransaction(entityManager -> entityManager.persist(student));
     }
 
     @Override
     public void delete(int id) {
         EntityTransaction et = null;
-        Student student = null;
+        StudentDB student = null;
         try {
             et = entityManager.getTransaction();
             et.begin();
-            student = entityManager.find(Student.class, id);
+            student = entityManager.find(StudentDB.class, id);
             entityManager.remove(student);
             et.commit();
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class StudentDAO implements Dao<Student> {
     }
 
     public List<String> studDbCounter() {
-        Query query = entityManager.createQuery("SELECT count(e) FROM Student e");
+        Query query = entityManager.createQuery("SELECT count(e) FROM StudentDB e");
         return (List<String>) query.getResultList();
     }
 
