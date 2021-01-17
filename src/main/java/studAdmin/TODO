@@ -14,6 +14,14 @@ Fix lists for getting single variables instead of everything in controller (for 
 
 Unique fix? Hvis to hedder det samme etc.
 
+basically, your student object has a bunch of annotations regarding the database structure right?
+ It's bad practice to be using this class everywhere in your code base.
+  Ideally it should only be used when fetching / using the database.
+  AS SOON AS you get these objects back you should convert them into another student object that DOESNT have database annotations.
+  This means you can manipulate the student object without having to manipulate around the database object which can be confusing.
+  You would typically use a Mapper class which would do 2 conversions, one from the database object to your new student object,
+  and another from the new student object to your database object
+
 
 //After this, the program is basically done.
 
