@@ -56,10 +56,10 @@ public class UserDAO {
         return users;
     }
 
-    public String getPassword(String username) {
+    public byte[] getPassword(String username) {
         Query query = entityManager.createQuery("SELECT password FROM Users WHERE Users.username = :username").setParameter("username", username);
-        query.setMaxResults(1);
-        return (String) query.getSingleResult();
+
+
     }
 
     public void save(Users user) {

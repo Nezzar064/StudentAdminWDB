@@ -2,6 +2,7 @@ package studAdmin;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
 
 @Entity
 @Table
@@ -14,20 +15,20 @@ public class Users implements Serializable {
     private String username;
 
     @Column(name = "password")
-    private String password;
+    private byte[] password;
 
     @Override
     public String toString() {
         return
                 "Username: " + username + "\n" +
-                "Password: " + password
+                "Password: " + Arrays.toString(password)
                 ;
     }
 
     public Users() {
     }
 
-    public Users(String username, String password) {
+    public Users(String username, byte[] password) {
         this.username = username;
         this.password = password;
     }
@@ -40,11 +41,11 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(byte[] password) {
         this.password = password;
     }
 }

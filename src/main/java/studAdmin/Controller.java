@@ -38,9 +38,9 @@ public class Controller {
 
     public void addUser(String username, String password) {
         Users user = new Users();
-        encryptPassword.encrypt(password);
-        user.setPassword(username);
-        user.setPassword(password);
+        byte[] encryptPW = encryptPassword.encrypt(password);
+        user.setUsername(username);
+        user.setPassword(encryptPW);
         userDAO.add(user);
     }
 
@@ -49,7 +49,7 @@ public class Controller {
         return users;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
 
     }
 
