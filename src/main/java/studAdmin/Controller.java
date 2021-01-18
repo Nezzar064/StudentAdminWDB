@@ -6,6 +6,8 @@ public class Controller {
 
     StudentDAO studentDAO = new StudentDAO();
     StudentMapper mapper = new StudentMapper();
+    UserDAO userDAO = new UserDAO();
+    EncryptPassword encryptPassword = new EncryptPassword();
 
     public Controller() {
     }
@@ -32,6 +34,23 @@ public class Controller {
 
     public List<String> studDbCounter() {
         return studentDAO.studDbCounter();
+    }
+
+    public void addUser(String username, String password) {
+        Users user = new Users();
+        encryptPassword.encrypt(password);
+        user.setPassword(username);
+        user.setPassword(password);
+        userDAO.add(user);
+    }
+
+    public List<Users> getUsers() {
+        List<Users> users = userDAO.getAll();
+        return users;
+    }
+
+    public String getPassword() {
+
     }
 
     public void changeName(Student student, String name) {

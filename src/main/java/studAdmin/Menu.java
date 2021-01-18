@@ -8,6 +8,7 @@ public class Menu {
     StudIdChecker studIdChecker = new StudIdChecker();
     Controller controller = new Controller();
 
+
     public void mainMenu() {
         boolean userContinue = true;
         while (userContinue) {
@@ -43,6 +44,8 @@ public class Menu {
                         output.getNumberOfStudents(controller.studDbCounter());
                         break;
                     case 6:
+
+                    case 7:
                         CW.newLine();
                         CW.print(CW.exitSystemMsg());
                         userContinue = false;
@@ -73,6 +76,7 @@ public class Menu {
                 "Change student info",
                 "List menu",
                 "Total number of students in system",
+                "Admin menu",
                 "Exit system"
         );
     }
@@ -249,5 +253,52 @@ public class Menu {
                 "List student name and ID by specified birth year",
                 "Exit to main menu"
         );
+    }
+
+    public void adminMenu() {
+        boolean userContinue = true;
+        while (userContinue) {
+            studentListMenuOptions();
+            try {
+                switch (UserInput.intIn.nextInt()) {
+                    case 1:
+                        output.listAllStudents(controller.getAll());
+                        break;
+                    case 2:
+                        output.listNameAndId(controller.getAll());
+                        break;
+                    case 3:
+                        output.listStudentInfoByID(controller.getAll());
+                        break;
+                    case 4:
+                        CW.newLine();
+                        CW.print(CW.exitToMainMenuMsg());
+                        CW.newLine();
+                        userContinue = false;
+                        mainMenu();
+                        break;
+                    default:
+                        CW.newLine();
+                        CW.print(CW.defaultSwitchMsg());
+                        CW.newLine();
+                        adminMenu();
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                CW.newLine();
+                CW.print(CW.mismatchExceptionMsg());
+                CW.newLine();
+                UserInput.intIn.next();
+            }
+        }
+    }
+
+    private void adminMenuOptions() {
+        CW.printMenu("Admin Menu",
+                "Add user",
+                "Delete user",
+                "List users",
+                "Exit to main menu"
+                );
     }
 }
