@@ -8,11 +8,13 @@ public class Controller {
     StudentMapper mapper = new StudentMapper();
     UserDAO userDAO = new UserDAO();
     EncryptPassword encryptPassword = new EncryptPassword();
+    UserMapper userMapper = new UserMapper();
+    YesNoBooleanConverter converter = new YesNoBooleanConverter();
 
     public Controller() {
     }
 
-    public void add(String name, String birthDate, String birthYear, String address, String phone, String program) {
+    public void addStudent(String name, String birthDate, String birthYear, String address, String phone, String program) {
         StudentDB student = new StudentDB();
         student.setName(name);
         student.setBirthDate(birthDate);
@@ -23,11 +25,11 @@ public class Controller {
         studentDAO.add(student);
     }
 
-    public void delete(int id) {
+    public void deleteStudent(int id) {
         studentDAO.delete(id);
     }
 
-    public List<Student> getAll() {
+    public List<Student> getAllStudents() {
         List<StudentDB> students = studentDAO.getAll();
         return mapper.mapListFromDatabaseList(students);
     }
@@ -36,21 +38,33 @@ public class Controller {
         return studentDAO.studDbCounter();
     }
 
-    public void addUser(String username, String password) {
-        Users user = new Users();
+    public void addUser(String username, String password, String adminStatus) {
+        UserDB user = new UserDB();
+
         byte[] encryptPW = encryptPassword.encrypt(password);
+        String hashedPassToStoreInDB = new String(encryptPW);
+        boolean convertedAdminStatus = converter.convertToEntityAttribute(adminStatus);
+
         user.setUsername(username);
-        user.setPassword(encryptPW);
+        user.setPassword(hashedPassToStoreInDB);
+        user.setHasAdminStatus(convertedAdminStatus);
         userDAO.add(user);
     }
 
-    public List<Users> getUsers() {
-        List<Users> users = userDAO.getAll();
-        return users;
+    public void delete(String username) {
+        userDAO.delete(username);
     }
 
-    public byte[] getPassword() {
+    public List<UserDB> getAllUsers() {
+        return userDAO.getAll();
+    }
 
+    public String getPassword(String username) {
+        return userDAO.getPasswordForInputtedUsername(username);
+    }
+
+    public boolean getAdminStatus(String username) {
+        return userDAO.getAdminStatusForInputtedUsername(username);
     }
 
     public void changeName(Student student, String name) {

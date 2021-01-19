@@ -1,13 +1,33 @@
 package studAdmin;
 
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Menu {
 
     StudentOutput output = new StudentOutput();
     StudIdChecker studIdChecker = new StudIdChecker();
     Controller controller = new Controller();
+    UserOutput userOutput = new UserOutput();
+    VerifyPassword verifyPassword = new VerifyPassword();
 
+    public void loginScreen() {
+        CW.print(controller.getPassword(inputUsername()));
+        Menu menu = new Menu();
+        String welcomeMsg = "Welcome to the Student Administration System!";
+        String loginMsg = "Please enter your username and password!";
+        /*
+        CW.print(welcomeMsg);
+        CW.print(loginMsg);
+        CW.newLine();
+        CW.print("Username:");
+        String username = UserInput.in.nextLine();
+
+        CW.print("Password:");
+        String password = UserInput.in.nextLine();
+         */
+        //verifyPassword.verifyPassword(menu, controller.getPassword(username), password, controller.getAdminStatus(username));
+    }
 
     public void mainMenu() {
         boolean userContinue = true;
@@ -24,11 +44,14 @@ public class Menu {
                         break;
                     case 2:
                         CW.newLine();
-                        controller.delete(inputId());
+                        controller.deleteStudent(inputId());
+                        CW.newLine();
+                        CW.print(CW.deletedStudentMsg(inputId()));
+                        CW.newLine();
                         break;
                     case 3:
                         CW.newLine();
-                        Student foundStudent = studIdChecker.IdCheck(controller.getAll());
+                        Student foundStudent = studIdChecker.IdCheck(controller.getAllStudents());
                         if (foundStudent != null) {
                             CW.newLine();
                             infoChangeMenu(foundStudent);
@@ -44,8 +67,6 @@ public class Menu {
                         output.getNumberOfStudents(controller.studDbCounter());
                         break;
                     case 6:
-
-                    case 7:
                         CW.newLine();
                         CW.print(CW.exitSystemMsg());
                         userContinue = false;
@@ -76,7 +97,6 @@ public class Menu {
                 "Change student info",
                 "List menu",
                 "Total number of students in system",
-                "Admin menu",
                 "Exit system"
         );
     }
@@ -105,7 +125,7 @@ public class Menu {
         CW.print("Please enter the students program: ");
         String program = UserInput.in.nextLine();
 
-        controller.add(name, birthDate, birthYear, address, phone, program);
+        controller.addStudent(name, birthDate, birthYear, address, phone, program);
     }
 
     public void infoChangeMenu(Student student) {
@@ -202,22 +222,22 @@ public class Menu {
             try {
                 switch (UserInput.intIn.nextInt()) {
                     case 1:
-                        output.listAllStudents(controller.getAll());
+                        output.listAllStudents(controller.getAllStudents());
                         break;
                     case 2:
-                        output.listNameAndId(controller.getAll());
+                        output.listNameAndId(controller.getAllStudents());
                         break;
                     case 3:
-                        output.listStudentInfoByID(controller.getAll());
+                        output.listStudentInfoByID(controller.getAllStudents());
                         break;
                     case 4:
-                        output.findNumbStudentsByProgram(controller.getAll());
+                        output.findNumbStudentsByProgram(controller.getAllStudents());
                         break;
                     case 5:
-                        output.findStudentsByProgram(controller.getAll());
+                        output.findStudentsByProgram(controller.getAllStudents());
                         break;
                     case 6:
-                        output.findStudentsByBirthYear(controller.getAll());
+                        output.findStudentsByBirthYear(controller.getAllStudents());
                         break;
                     case 7:
                         CW.newLine();
@@ -258,24 +278,36 @@ public class Menu {
     public void adminMenu() {
         boolean userContinue = true;
         while (userContinue) {
-            studentListMenuOptions();
+            adminMenuOptions();
             try {
                 switch (UserInput.intIn.nextInt()) {
                     case 1:
-                        output.listAllStudents(controller.getAll());
+                        CW.newLine();
+                        setUser();
+                        CW.newLine();
+                        CW.print("User successfully added to the system!");
+                        CW.newLine();
                         break;
                     case 2:
-                        output.listNameAndId(controller.getAll());
+                        CW.newLine();
+                        controller.delete(inputUsername());
+                        CW.newLine();
+                        CW.print(CW.deletedUserMsg(inputUsername()));
+                        CW.newLine();
                         break;
                     case 3:
-                        output.listStudentInfoByID(controller.getAll());
+                        userOutput.listAllUsers(controller.getAllUsers());
                         break;
                     case 4:
                         CW.newLine();
-                        CW.print(CW.exitToMainMenuMsg());
+                        mainMenu();
+                        break;
+                    case 5:
+                        CW.newLine();
+                        CW.print(CW.exitSystemMsg());
                         CW.newLine();
                         userContinue = false;
-                        mainMenu();
+                        System.exit(0);
                         break;
                     default:
                         CW.newLine();
@@ -298,7 +330,26 @@ public class Menu {
                 "Add user",
                 "Delete user",
                 "List users",
+                "Enter secretary menu",
                 "Exit to main menu"
                 );
+    }
+
+    private String inputUsername() {
+        CW.print("Please enter the users username");
+        return UserInput.in.nextLine();
+    }
+
+    private void setUser() {
+        CW.print("Please enter the username you want: ");
+        String username = UserInput.in.nextLine();
+
+        CW.print("Please enter your password: ");
+        String password = UserInput.in.nextLine();
+
+        CW.print("Admin status? (Y/N)");
+        String adminStatus = UserInput.in.nextLine();
+
+        controller.addUser(username, password, adminStatus);
     }
 }

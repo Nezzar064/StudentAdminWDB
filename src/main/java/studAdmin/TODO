@@ -4,13 +4,23 @@ Implement spring?
 
 Make a greeter message when logging in
 Change primary key so its standalone, needs to be a sequence instead of autoincrement, make a seperate ID for students.
-Search for students via name, not ID.
+-- Search for students via name, not ID.
+-- dont output studentID in lists!! needs to be hidden away
 
 TODO: DO THIS FIRST
-Fix UserDAO.getPassword method, fix in controller and then make a login function in menu and add a user admin/pw: something, to the
-database.
+
+Fix Student variables - brug GENDER enum som i https://stackabuse.com/guide-to-jpa-with-hibernate-basic-mapping/
+-- også implement birthdate/birthyear som LocalDate instead. evt tag fra El Dolphin
+
+Usermapper doesnt work!
+
+need a not null checker for verification PW
+
+maybe counter for login screen, 3 attempts for login?
 
 Fix lists for getting single variables instead of everything in controller (for listfunctions, idchecker)
+
+Maybe add a forgot password function or something??
 
 Unique fix? Hvis to hedder det samme etc.
 

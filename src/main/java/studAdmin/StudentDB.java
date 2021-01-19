@@ -34,16 +34,15 @@ public class StudentDB implements Serializable {
     @Column (name = "program", unique = true)
     private String program;
 
-    @Override
     public String toString() {
         return
-                "ID: " + "\"" + id + "\"" + "\n" +
-                "Name: " + "\"" +  name + "\"" + "\n" +
-                "Birth Date: " + "\"" + birthDate + "\"" + "\n" +
-                "Birth Year: " + "\"" + birthYear + "\"" + "\n" +
-                "Address: " + "\"" + address + "\"" + "\n" +
-                "Phone: " + "\"" + phone + "\"" + "\n" +
-                "Program: " + "\"" + program + "\"" + "\n"
+                "ID: " + id + "\n" +
+                        "Name: " + name + "\n" +
+                        "Birth Date: " + "\"" + birthDate + "\n" +
+                        "Birth Year: " + "\"" + birthYear + "\n" +
+                        "Address: " + address + "\n" +
+                        "Phone: "  + phone + "\n" +
+                        "Program: " + program + "\n"
                 ;
     }
 

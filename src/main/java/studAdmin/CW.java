@@ -37,6 +37,18 @@ public class CW {
         return "System has no students registered! Returning to menu";
     }
 
+    public static String noUsersRegisteredMsg() {
+        return "System has no users registered! Returning to menu";
+    }
+
+    public static String deletedUserMsg(String username) {
+        return "User: " + username + " successfully deleted";
+    }
+
+    public static String deletedStudentMsg(int id) {
+        return "Student " + id + " successfully deleted";
+    }
+
     public static String noVarInRegisteredForStudentsMsg(String var) {
         return "System has no students assigned to \"" + var + "\"! Returning to menu";
     }

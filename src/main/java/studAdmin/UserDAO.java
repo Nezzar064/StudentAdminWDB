@@ -15,7 +15,7 @@ public class UserDAO {
         entityManager = Persistence.createEntityManagerFactory("StudentAdminWDB").createEntityManager();
     }
 
-    public void add(Users user) {
+    public void add(UserDB user) {
         EntityTransaction et = null;
         try {
             et = entityManager.getTransaction();
@@ -34,11 +34,11 @@ public class UserDAO {
 
     public void delete(String username) {
         EntityTransaction et = null;
-        Users user = null;
+        UserDB user = null;
         try {
             et = entityManager.getTransaction();
             et.begin();
-            user = entityManager.find(Users.class, username);
+            user = entityManager.find(UserDB.class, username);
             entityManager.remove(user);
             et.commit();
         } catch (Exception ex) {
@@ -49,20 +49,24 @@ public class UserDAO {
         }
     }
 
-    public List<Users> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM Users e");
-        List<Users> users;
+    public List<UserDB> getAll() {
+        Query query = entityManager.createQuery("SELECT e FROM UserDB e");
+        List<UserDB> users;
         users = query.getResultList();
         return users;
     }
 
-    public byte[] getPassword(String username) {
-        Query query = entityManager.createQuery("SELECT password FROM Users WHERE Users.username = :username").setParameter("username", username);
-
-
+    public String getPasswordForInputtedUsername(String username) {
+        Query query = entityManager.createQuery("SELECT password FROM UserDB WHERE UserDB.username = :username").setParameter("username", username);
+        return (String) query.getSingleResult();
     }
 
-    public void save(Users user) {
+    public boolean getAdminStatusForInputtedUsername(String username) {
+        Query query = entityManager.createQuery("SELECT hasAdminStatus FROM UserDB WHERE UserDB.username = :username").setParameter("username", username);
+        return (boolean)query.getSingleResult();
+    }
+
+    public void save(UserDB user) {
         executeInsideTransaction(entityManager -> entityManager.persist(user));
     }
 
