@@ -1,5 +1,6 @@
 package studAdmin;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
@@ -17,6 +18,7 @@ public class Menu {
         System.out.println(controller.getPassword("admin"));
         System.out.println(verify.getInputHashedPassword("admin", controller.getSalt("admin")));
          */
+
         Menu menu = new Menu();
         String welcomeMsg = "Welcome to the Student Administration System!";
         CW.newLine();
@@ -115,11 +117,8 @@ public class Menu {
         CW.print("Please enter the students name: ");
         String name = UserInput.in.nextLine();
 
-        CW.print("Please enter the students date of birth: ");
-        String birthDate = UserInput.in.nextLine();
-
-        CW.print("Please enter the students birth year: ");
-        String birthYear = UserInput.in.nextLine();
+        CW.print("Please enter the students date of (year-month-date): ");
+        LocalDate birthDate = LocalDate.parse(UserInput.in.nextLine());
 
         CW.print("Please enter the students address: ");
         String address = UserInput.in.nextLine();
@@ -130,7 +129,7 @@ public class Menu {
         CW.print("Please enter the students program: ");
         String program = UserInput.in.nextLine();
 
-        controller.addStudent(name, birthDate, birthYear, address, phone, program);
+        controller.addStudent(name, birthDate, address, phone, program);
     }
 
     public void infoChangeMenu(Student student) {
@@ -147,21 +146,15 @@ public class Menu {
                     break;
                 case 2:
                     CW.newLine();
-                    CW.print("Please enter the new date of birth: ");
-                    String birthDate = UserInput.in.nextLine();
+                    CW.print("Please enter the new birthdate: ");
+                    LocalDate birthDate = LocalDate.parse(UserInput.in.nextLine());
                     CW.newLine();
                     controller.changeDOB(student, birthDate);
-                    successMsg(birthDate);
+                    CW.newLine();
+                    CW.print(CW.successMsgForBirthDate(birthDate));
+                    CW.newLine();
                     break;
                 case 3:
-                    CW.newLine();
-                    CW.print("Please enter the new birth year: ");
-                    String birthYear = UserInput.in.nextLine();
-                    CW.newLine();
-                    controller.changeBirthYear(student, birthYear);
-                    successMsg(birthYear);
-                    break;
-                case 4:
                     CW.newLine();
                     CW.print("Please enter the new address: ");
                     String address = UserInput.in.nextLine();;
@@ -169,7 +162,7 @@ public class Menu {
                     controller.changeAddress(student, address);
                     successMsg(address);
                     break;
-                case 5:
+                case 4:
                     CW.newLine();
                     CW.print("Please enter the new phone number: ");
                     String phone = UserInput.in.nextLine();
@@ -177,7 +170,7 @@ public class Menu {
                     controller.changePhoneNumber(student, phone);
                     successMsg(phone);
                     break;
-                case 6:
+                case 5:
                     CW.newLine();
                     CW.print("Please enter the new program: ");
                     String program = UserInput.in.nextLine();
@@ -185,7 +178,7 @@ public class Menu {
                     controller.changeProgram(student, program);
                     successMsg(program);
                     break;
-                case 7:
+                case 6:
                     CW.newLine();
                     CW.print(CW.exitToMainMenuMsg());
                     CW.newLine();
@@ -211,8 +204,7 @@ public class Menu {
         CW.printMenu(
                 "Student Information change",
                 "Change student name",
-                "Change student date of birth",
-                "Change student birth year",
+                "Change student birthdate",
                 "Change student address",
                 "Change student phone number",
                 "Change student program",
@@ -242,9 +234,6 @@ public class Menu {
                         output.findStudentsByProgram(controller.getAllStudents());
                         break;
                     case 6:
-                        output.findStudentsByBirthYear(controller.getAllStudents());
-                        break;
-                    case 7:
                         CW.newLine();
                         CW.print(CW.exitToMainMenuMsg());
                         CW.newLine();
@@ -275,7 +264,6 @@ public class Menu {
                 "List student info by specified ID",
                 "List number of students by specified program",
                 "List student name and ID by specified program",
-                "List student name and ID by specified birth year",
                 "Exit to main menu"
         );
     }

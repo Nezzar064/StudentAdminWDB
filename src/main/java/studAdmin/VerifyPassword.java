@@ -1,9 +1,5 @@
 package studAdmin;
 
-import org.apache.commons.codec.binary.Hex;
-
-import java.util.Arrays;
-
 public class VerifyPassword {
 
     EncryptPassword encryptPassword = new EncryptPassword();
