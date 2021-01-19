@@ -20,6 +20,9 @@ public class UserDB implements Serializable {
     @Convert(converter = YesNoBooleanConverter.class)
     private boolean hasAdminStatus;
 
+    @Column(name = "salt")
+    private byte[] salt;
+
     @Override
     public String toString() {
         return
@@ -31,10 +34,12 @@ public class UserDB implements Serializable {
     public UserDB() {
     }
 
-    public UserDB(String username, String password, boolean hasAdminStatus) {
+    public UserDB(String username, String password, boolean hasAdminStatus, byte[] salt) {
         this.username = username;
         this.password = password;
         this.hasAdminStatus = hasAdminStatus;
+        this.salt = salt;
+
     }
 
     public String getUsername() {
@@ -59,5 +64,13 @@ public class UserDB implements Serializable {
 
     public void setHasAdminStatus(boolean hasAdminStatus) {
         this.hasAdminStatus = hasAdminStatus;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 }

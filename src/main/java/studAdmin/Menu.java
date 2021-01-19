@@ -1,7 +1,7 @@
 package studAdmin;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Menu {
 
@@ -9,25 +9,30 @@ public class Menu {
     StudIdChecker studIdChecker = new StudIdChecker();
     Controller controller = new Controller();
     UserOutput userOutput = new UserOutput();
-    VerifyPassword verifyPassword = new VerifyPassword();
+    VerifyPassword verify = new VerifyPassword();
 
     public void loginScreen() {
-        CW.print(controller.getPassword(inputUsername()));
+        /*
+        Tester
+        System.out.println(controller.getPassword("admin"));
+        System.out.println(verify.getInputHashedPassword("admin", controller.getSalt("admin")));
+         */
         Menu menu = new Menu();
         String welcomeMsg = "Welcome to the Student Administration System!";
+        CW.newLine();
         String loginMsg = "Please enter your username and password!";
-        /*
+
         CW.print(welcomeMsg);
         CW.print(loginMsg);
         CW.newLine();
-        CW.print("Username:");
+        System.out.print("Username:");
         String username = UserInput.in.nextLine();
-
-        CW.print("Password:");
+        System.out.print("Password:");
         String password = UserInput.in.nextLine();
-         */
-        //verifyPassword.verifyPassword(menu, controller.getPassword(username), password, controller.getAdminStatus(username));
+        CW.newLine();
+        verify.verifyPassword(menu, controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username));
     }
+
 
     public void mainMenu() {
         boolean userContinue = true;
@@ -290,7 +295,7 @@ public class Menu {
                         break;
                     case 2:
                         CW.newLine();
-                        controller.delete(inputUsername());
+                        controller.deleteUser(inputUsername());
                         CW.newLine();
                         CW.print(CW.deletedUserMsg(inputUsername()));
                         CW.newLine();

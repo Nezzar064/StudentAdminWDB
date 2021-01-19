@@ -40,18 +40,19 @@ public class Controller {
 
     public void addUser(String username, String password, String adminStatus) {
         UserDB user = new UserDB();
-
-        byte[] encryptPW = encryptPassword.encrypt(password);
+        byte[] saltToDb = encryptPassword.getSalt();
+        byte[] encryptPW = encryptPassword.encrypt(password, saltToDb);
         String hashedPassToStoreInDB = new String(encryptPW);
         boolean convertedAdminStatus = converter.convertToEntityAttribute(adminStatus);
 
         user.setUsername(username);
         user.setPassword(hashedPassToStoreInDB);
         user.setHasAdminStatus(convertedAdminStatus);
+        user.setSalt(saltToDb);
         userDAO.add(user);
     }
 
-    public void delete(String username) {
+    public void deleteUser(String username) {
         userDAO.delete(username);
     }
 
@@ -65,6 +66,10 @@ public class Controller {
 
     public boolean getAdminStatus(String username) {
         return userDAO.getAdminStatusForInputtedUsername(username);
+    }
+
+    public byte[] getSalt(String username) {
+        return userDAO.getSaltForInputtedUsername(username);
     }
 
     public void changeName(Student student, String name) {

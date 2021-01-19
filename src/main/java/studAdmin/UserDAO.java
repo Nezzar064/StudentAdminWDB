@@ -57,13 +57,18 @@ public class UserDAO {
     }
 
     public String getPasswordForInputtedUsername(String username) {
-        Query query = entityManager.createQuery("SELECT password FROM UserDB WHERE UserDB.username = :username").setParameter("username", username);
+        Query query = entityManager.createQuery("Select userDB.password from UserDB userDB where userDB.username = :username").setParameter("username", username);
         return (String) query.getSingleResult();
     }
 
+    public byte[] getSaltForInputtedUsername(String username) {
+        Query query = entityManager.createQuery("Select userDB.salt from UserDB userDB where userDB.username = :username").setParameter("username", username);
+        return (byte[]) query.getSingleResult();
+    }
+
     public boolean getAdminStatusForInputtedUsername(String username) {
-        Query query = entityManager.createQuery("SELECT hasAdminStatus FROM UserDB WHERE UserDB.username = :username").setParameter("username", username);
-        return (boolean)query.getSingleResult();
+        Query query = entityManager.createQuery("SELECT userDB.hasAdminStatus FROM UserDB userDB WHERE userDB.username = :username").setParameter("username", username);
+        return (boolean) query.getSingleResult();
     }
 
     public void save(UserDB user) {
