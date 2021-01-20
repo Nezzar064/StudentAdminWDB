@@ -2,12 +2,13 @@ package studAdmin;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "students")
 public class StudentDB implements Serializable {
 
-    //If you change the object, remember to change in mapper as well.
+    //If you change the object, remember to change in mapper as well..
 
     private static final long serialVersionUID = 1L;
 
@@ -20,10 +21,7 @@ public class StudentDB implements Serializable {
     private String name;
 
     @Column (name = "birthdate", unique = true)
-    private String birthDate;
-
-    @Column (name = "birthyear", unique = true)
-    private String birthYear;
+    private LocalDate birthDate;
 
     @Column (name = "address", unique = true)
     private String address;
@@ -38,8 +36,7 @@ public class StudentDB implements Serializable {
         return
                 "ID: " + id + "\n" +
                         "Name: " + name + "\n" +
-                        "Birth Date: " + "\"" + birthDate + "\n" +
-                        "Birth Year: " + "\"" + birthYear + "\n" +
+                        "Birthdate: " + birthDate + "\n" +
                         "Address: " + address + "\n" +
                         "Phone: "  + phone + "\n" +
                         "Program: " + program + "\n"
@@ -58,11 +55,10 @@ public class StudentDB implements Serializable {
         this.name = name;
     }
 
-    public StudentDB(int id, String name, String birthDate, String birthYear, String address, String phone, String program) {
+    public StudentDB(int id, String name, LocalDate birthDate, String address, String phone, String program) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
-        this.birthYear = birthYear;
         this.address = address;
         this.phone = phone;
         this.program = program;
@@ -84,20 +80,12 @@ public class StudentDB implements Serializable {
         return name;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthYear(String birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public String getBirthYear() {
-        return birthYear;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setAddress(String address) {

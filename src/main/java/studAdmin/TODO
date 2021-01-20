@@ -5,12 +5,11 @@ Implement spring?
 Make a greeter message when logging in
 Change primary key so its standalone, needs to be a sequence instead of autoincrement, make a seperate ID for students.
 -- Search for students via name, not ID.
--- dont output studentID in lists!! needs to be hidden away
+-- dont output studentID in lists!! needs to be hidden away..
 
 TODO: DO THIS FIRST
 
 Fix Student variables - brug GENDER enum som i https://stackabuse.com/guide-to-jpa-with-hibernate-basic-mapping/
--- også implement birthdate/birthyear som LocalDate instead. evt tag fra El Dolphin
 
 Usermapper doesnt work!
 

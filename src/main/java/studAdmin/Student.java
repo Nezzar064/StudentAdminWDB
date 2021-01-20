@@ -1,13 +1,14 @@
 package studAdmin;
 
+import java.time.LocalDate;
+
 public class Student {
 
-    //If you change the object, remember to change in mapper as well.
+    //If you change the object, remember to change in mapper as well..
 
     private int id;
     private String name;
-    private String birthDate;
-    private String birthYear;
+    private LocalDate birthDate;
     private String address;
     private String phone;
     private String program;
@@ -17,8 +18,7 @@ public class Student {
         return
                 "ID: " + id + "\n" +
                         "Name: " + name + "\n" +
-                        "Birth Date: " + "\"" + birthDate + "\n" +
-                        "Birth Year: " + "\"" + birthYear + "\n" +
+                        "Birthdate: "  + birthDate + "\n" +
                         "Address: " + address + "\n" +
                         "Phone: "  + phone + "\n" +
                         "Program: " + program + "\n"
@@ -37,11 +37,10 @@ public class Student {
         this.name = name;
     }
 
-    public Student(int id, String name, String birthDate, String birthYear, String address, String phone, String program) {
+    public Student(int id, String name, LocalDate birthDate, String address, String phone, String program) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
-        this.birthYear = birthYear;
         this.address = address;
         this.phone = phone;
         this.program = program;
@@ -63,20 +62,12 @@ public class Student {
         return name;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthYear(String birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public String getBirthYear() {
-        return birthYear;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setAddress(String address) {

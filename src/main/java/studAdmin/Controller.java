@@ -1,5 +1,6 @@
 package studAdmin;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Controller {
@@ -14,11 +15,10 @@ public class Controller {
     public Controller() {
     }
 
-    public void addStudent(String name, String birthDate, String birthYear, String address, String phone, String program) {
+    public void addStudent(String name, LocalDate birthDate, String address, String phone, String program) {
         StudentDB student = new StudentDB();
         student.setName(name);
         student.setBirthDate(birthDate);
-        student.setBirthYear(birthYear);
         student.setAddress(address);
         student.setPhone(phone);
         student.setProgram(program);
@@ -78,14 +78,8 @@ public class Controller {
         studentDAO.save(databaseStudent);
     }
 
-    public void changeDOB(Student student, String birthDate) {
+    public void changeDOB(Student student, LocalDate birthDate) {
         student.setBirthDate(birthDate);
-        StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
-        studentDAO.save(databaseStudent);
-    }
-
-    public void changeBirthYear(Student student, String birthYear) {
-        student.setBirthYear(birthYear);
         StudentDB databaseStudent = mapper.mapToDatabaseObject(student);
         studentDAO.save(databaseStudent);
     }

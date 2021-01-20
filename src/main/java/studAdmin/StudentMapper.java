@@ -5,12 +5,13 @@ import java.util.List;
 
 public class StudentMapper {
 
+    //fix this..
+
     public Student mapFromDatabaseObject(StudentDB studentDB) {
         Student student = new Student();
         student.setId(studentDB.getId());
         student.setName(studentDB.getName());
         student.setBirthDate(studentDB.getBirthDate());
-        student.setBirthYear(studentDB.getBirthYear());
         student.setAddress(studentDB.getAddress());
         student.setPhone(studentDB.getPhone());
         student.setProgram(studentDB.getProgram());
@@ -23,7 +24,6 @@ public class StudentMapper {
         studentDB.setId(student.getId());
         studentDB.setName(student.getName());
         studentDB.setBirthDate(student.getBirthDate());
-        studentDB.setBirthYear(student.getBirthYear());
         studentDB.setAddress(student.getAddress());
         studentDB.setPhone(student.getPhone());
         studentDB.setProgram(student.getProgram());

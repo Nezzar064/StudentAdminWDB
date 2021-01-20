@@ -5,6 +5,7 @@ public class User {
     private String username;
     private String password;
     private boolean hasAdminStatus;
+    private byte[] salt;
 
     @Override
     public String toString() {
@@ -18,10 +19,11 @@ public class User {
 
     }
 
-    public User(String username, String password, boolean hasAdminStatus) {
+    public User(String username, String password, boolean hasAdminStatus, byte[] salt) {
         this.username = username;
         this.password = password;
         this.hasAdminStatus = hasAdminStatus;
+        this.salt = salt;
     }
 
     public String getUsername() {

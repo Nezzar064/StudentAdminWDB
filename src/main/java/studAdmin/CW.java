@@ -1,5 +1,7 @@
 package studAdmin;
 
+import java.time.LocalDate;
+
 public class CW {
     public static String bars() {
         return ("\n-----------------------------------------------------\n");
@@ -43,6 +45,10 @@ public class CW {
 
     public static String deletedUserMsg(String username) {
         return "User: " + username + " successfully deleted";
+    }
+
+    public static String successMsgForBirthDate(LocalDate date) {
+        return ("Birthdate successfully changed to: " + date);
     }
 
     public static String deletedStudentMsg(int id) {

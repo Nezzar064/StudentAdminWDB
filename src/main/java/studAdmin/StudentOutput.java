@@ -67,7 +67,6 @@ public class StudentOutput {
         }
     }
 
-    //TODO: Fix bug: prints if error message, even though program exists.
     public void findNumbStudentsByProgram(List<Student> students) {
         if (!students.isEmpty()) {
             int j = 0;
@@ -124,31 +123,6 @@ public class StudentOutput {
         }
     }
 
-    public void findStudentsByBirthYear(List<Student> students) { //TODO: Sort by birth year
-        if (!students.isEmpty()) {
-            CW.newLine();
-            CW.print("Please specify student birth year: ");
-            String birthYear = UserInput.in.nextLine();
-            CW.newLine();
-            for (int i = 0; i < students.size(); i++) {
-                if (students.get(i).getBirthYear().equals(birthYear)) {
-                    CW.newLine();
-                    CW.print("ID: " + students.get(i).getId() + ", " + students.get(i).getName());
-                }
-            }
-            if (students.get(i).getProgram().equals(birthYear)) {
-                CW.print("*Students assigned to: " + birthYear + "*");
-            }
-            if (!students.get(i).getBirthYear().equals(birthYear)) {
-                CW.newLine();
-                CW.print(CW.noVarInRegisteredForStudentsMsg(birthYear));
-            }
-            CW.newLine();
-        } else {
-            CW.newLine();
-            CW.print(CW.noStudentsRegisteredMsg());
-        }
-    }
 
     public void getNumberOfStudents(List<String> counter) {
         CW.newLine();
@@ -161,7 +135,6 @@ public class StudentOutput {
     private void outputStudents(List<Student> students) {
         CW.print("Name: " + students.get(i).getName());
         CW.print("Birthdate: " + students.get(i).getBirthDate());
-        CW.print("Birth year: " + students.get(i).getBirthYear());
         CW.print("Address: " + students.get(i).getAddress());
         CW.print("Phone: " + students.get(i).getPhone());
         CW.print("Program: " + students.get(i).getProgram());
