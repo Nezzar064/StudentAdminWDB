@@ -15,9 +15,9 @@ Usermapper doesnt work!
 
 Fix bugs in studentoutput, check the mapper...
 
-if you login as admin, go to secretary menu, maybe make an option to go back?
+noresultexception when using wrong username, fix it for loginscreen. need to check database with a getUsername maybe??
 
-maybe counter for login screen, 3 attempts for login?
+if you login as admin, go to secretary menu, maybe make an option to go back?
 
 Fix lists for getting single variables instead of everything in controller (for listfunctions, idchecker)
 

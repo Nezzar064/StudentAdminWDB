@@ -60,6 +60,8 @@ public class Controller {
         return userDAO.getAll();
     }
 
+    public List<UserDB> getAllUsernames() { return userDAO.getUsernames(); }
+
     public String getPassword(String username) {
         return userDAO.getPasswordForInputtedUsername(username);
     }

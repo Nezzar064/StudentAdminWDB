@@ -49,4 +49,12 @@ public class User {
     public void setHasAdminStatus(boolean hasAdminStatus) {
         this.hasAdminStatus = hasAdminStatus;
     }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
 }

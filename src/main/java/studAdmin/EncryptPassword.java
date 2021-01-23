@@ -24,6 +24,11 @@ public class EncryptPassword {
         return saltArr;
     }
 
+    public String inputPwToHashedPw(String password, byte[] salt) {
+        byte[] hashedInputPass = encrypt(password, salt);
+        return new String(hashedInputPass);
+    }
+
     private byte[] hashPassword(final char[] password, final byte[] salt, final int iterations, final int keyLength) {
         try {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");

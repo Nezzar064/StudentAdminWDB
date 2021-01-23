@@ -1,8 +1,10 @@
 package studAdmin;
 
+import javax.persistence.NoResultException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Menu {
 
@@ -10,7 +12,9 @@ public class Menu {
     StudIdChecker studIdChecker = new StudIdChecker();
     Controller controller = new Controller();
     UserOutput userOutput = new UserOutput();
-    VerifyPassword verify = new VerifyPassword();
+    EncryptPassword encryptPw = new EncryptPassword();
+
+    int totalAttempts = 2;
 
     public void loginScreen() {
         /*
@@ -19,7 +23,6 @@ public class Menu {
         System.out.println(verify.getInputHashedPassword("admin", controller.getSalt("admin")));
          */
 
-        Menu menu = new Menu();
         String welcomeMsg = "Welcome to the Student Administration System!";
         CW.newLine();
         String loginMsg = "Please enter your username and password!";
@@ -29,12 +32,40 @@ public class Menu {
         CW.newLine();
         System.out.print("Username:");
         String username = UserInput.in.nextLine();
+        //usernameExistsChecker(controller.getAllUsernames(), username);
         System.out.print("Password:");
         String password = UserInput.in.nextLine();
         CW.newLine();
-        verify.verifyPassword(menu, controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username));
+
+        try {
+            verifyPassword(controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username));
+        } catch (NoResultException e) {
+            CW.print("Username does not exist, try again!");
+            loginScreen();
+        }
     }
 
+
+    private void verifyPassword(String dbPassword, String inputPassword, boolean adminStatus, byte[] salt) {
+        if (totalAttempts != 0) {
+            if (dbPassword.equals(encryptPw.inputPwToHashedPw(inputPassword, salt)) && adminStatus) {
+                CW.print("Access granted!");
+                CW.newLine();
+                adminMenu();
+            } else if (dbPassword.equals(encryptPw.inputPwToHashedPw(inputPassword, salt)) && !adminStatus) {
+                CW.print("Access granted!");
+                CW.newLine();
+                mainMenu();
+            } else {
+                CW.print("ERROR: Invalid password, " + totalAttempts + " attempt(s) left!");
+                totalAttempts--;
+                loginScreen();
+            }
+        } else {
+            CW.print("All attempts used, system will exit!");
+            System.exit(0);
+        }
+    }
 
     public void mainMenu() {
         boolean userContinue = true;
@@ -157,7 +188,8 @@ public class Menu {
                 case 3:
                     CW.newLine();
                     CW.print("Please enter the new address: ");
-                    String address = UserInput.in.nextLine();;
+                    String address = UserInput.in.nextLine();
+                    ;
                     CW.newLine();
                     controller.changeAddress(student, address);
                     successMsg(address);
@@ -324,8 +356,8 @@ public class Menu {
                 "Delete user",
                 "List users",
                 "Enter secretary menu",
-                "Exit to main menu"
-                );
+                "Exit system"
+        );
     }
 
     private String inputUsername() {
