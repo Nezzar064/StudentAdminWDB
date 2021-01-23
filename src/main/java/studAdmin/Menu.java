@@ -2,9 +2,7 @@ package studAdmin;
 
 import javax.persistence.NoResultException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.List;
 
 public class Menu {
 
@@ -189,7 +187,6 @@ public class Menu {
                     CW.newLine();
                     CW.print("Please enter the new address: ");
                     String address = UserInput.in.nextLine();
-                    ;
                     CW.newLine();
                     controller.changeAddress(student, address);
                     successMsg(address);

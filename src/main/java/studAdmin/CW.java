@@ -3,9 +3,6 @@ package studAdmin;
 import java.time.LocalDate;
 
 public class CW {
-    public static String bars() {
-        return ("\n-----------------------------------------------------\n");
-    }
 
     public static String menuBars() {
         return ("\n-----------------------------------------------------\n");
