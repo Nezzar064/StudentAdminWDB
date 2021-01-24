@@ -71,13 +71,6 @@ public class UserDAO {
         return (boolean) query.getSingleResult();
     }
 
-    public List<UserDB> getUsernames() {
-        Query query = entityManager.createQuery("Select e.username from UserDB e");
-        List<UserDB> usernames;
-        usernames = query.getResultList();
-        return usernames;
-    }
-
     public void save(UserDB user) {
         executeInsideTransaction(entityManager -> entityManager.persist(user));
     }
