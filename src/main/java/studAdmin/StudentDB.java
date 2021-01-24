@@ -17,19 +17,19 @@ public class StudentDB implements Serializable {
     @Column (name = "id", unique = true)
     private int id;
 
-    @Column (name = "name", unique = true)
+    @Column (name = "name")
     private String name;
 
-    @Column (name = "birthdate", unique = true)
+    @Column (name = "birthdate")
     private LocalDate birthDate;
 
-    @Column (name = "address", unique = true)
+    @Column (name = "address")
     private String address;
 
     @Column (name = "phone", unique = true)
     private String phone;
 
-    @Column (name = "program", unique = true)
+    @Column (name = "program")
     private String program;
 
     public String toString() {

@@ -1,35 +1,7 @@
 //Format: TODO + PRIORITY/NUMBER
-API is the nextttttt one
-Implement spring?
-
-Make a greeter message when logging in
-Change primary key so its standalone, needs to be a sequence instead of autoincrement, make a seperate ID for students.
--- Search for students via name, not ID.
--- dont output studentID in lists!! needs to be hidden away..
-
-TODO: DO THIS FIRST
-
-Fix Student variables - brug GENDER enum som i https://stackabuse.com/guide-to-jpa-with-hibernate-basic-mapping/
-
-Usermapper doesnt work!
-
-Fix bugs in studentoutput, check the mapper...
-
-noresultexception when using wrong username, fix it for loginscreen. need to check database with a getUsername maybe??
-
-if you login as admin, go to secretary menu, maybe make an option to go back?
-
-Fix lists for getting single variables instead of everything in controller (for listfunctions, idchecker)
 
 Maybe add a forgot password function or something??
 
-Unique fix? Hvis to hedder det samme etc.
-
-https://coderanch.com/t/599790/databases/User-Registration-Login-Hibernate
-https://medium.com/@kasunpdh/how-to-store-passwords-securely-with-pbkdf2-204487f14e84
-https://dev.to/demg_dev/pbkdf2-hash-a-secure-password-5f8l
-
-//After this, the program is basically done.
 
 
 

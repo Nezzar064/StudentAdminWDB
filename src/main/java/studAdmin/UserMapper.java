@@ -3,24 +3,24 @@ package studAdmin;
 import java.util.ArrayList;
 import java.util.List;
 
-//DOESNT WORK!! GET HELP
-
 public class UserMapper {
 
     public User mapFromDatabaseObject(UserDB userDB) {
         User user = new User();
-        userDB.setUsername(user.getUsername());
-        userDB.setPassword(user.getPassword());
-        userDB.setHasAdminStatus(user.getAdminStatus());
+        user.setUsername(userDB.getUsername());
+        user.setPassword(userDB.getPassword());
+        user.setHasAdminStatus(userDB.getAdminStatus());
+        user.setSalt(userDB.getSalt());
 
         return user;
     }
 
     public UserDB mapToDatabaseObject(User user) {
         UserDB userDB = new UserDB();
-        user.setUsername(userDB.getUsername());
-        user.setPassword(userDB.getPassword());
-        user.setHasAdminStatus(userDB.hasAdminStatus());
+        userDB.setUsername(user.getUsername());
+        userDB.setPassword(user.getPassword());
+        userDB.setHasAdminStatus(user.getAdminStatus());
+        userDB.setSalt(user.getSalt());
         return userDB;
     }
 
@@ -35,5 +35,4 @@ public class UserMapper {
         userList.forEach(user -> userDbList.add(mapToDatabaseObject(user)));
         return userDbList;
     }
-
 }

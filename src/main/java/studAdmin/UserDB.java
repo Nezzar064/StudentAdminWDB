@@ -58,7 +58,7 @@ public class UserDB implements Serializable {
         this.password = password;
     }
 
-    public boolean hasAdminStatus() {
+    public boolean getAdminStatus() {
         return hasAdminStatus;
     }
 

@@ -36,7 +36,7 @@ public class Menu {
         CW.newLine();
 
         try {
-            verifyPassword(controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username));
+            verifyPassword(controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username), username);
         } catch (NoResultException e) {
             CW.print("Username does not exist, try again!");
             loginScreen();
@@ -44,14 +44,14 @@ public class Menu {
     }
 
 
-    private void verifyPassword(String dbPassword, String inputPassword, boolean adminStatus, byte[] salt) {
+    private void verifyPassword(String dbPassword, String inputPassword, boolean adminStatus, byte[] salt, String username) {
         if (totalAttempts != 0) {
             if (dbPassword.equals(encryptPw.inputPwToHashedPw(inputPassword, salt)) && adminStatus) {
-                CW.print("Access granted!");
+                CW.print("Access granted! Welcome " + username);
                 CW.newLine();
                 adminMenu();
             } else if (dbPassword.equals(encryptPw.inputPwToHashedPw(inputPassword, salt)) && !adminStatus) {
-                CW.print("Access granted!");
+                CW.print("Access granted! Welcome " + username);
                 CW.newLine();
                 mainMenu();
             } else {

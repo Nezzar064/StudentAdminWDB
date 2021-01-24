@@ -56,8 +56,9 @@ public class Controller {
         userDAO.delete(username);
     }
 
-    public List<UserDB> getAllUsers() {
-        return userDAO.getAll();
+    public List<User> getAllUsers() {
+        List<UserDB> users = userDAO.getAll();
+        return userMapper.mapListFromDatabaseList(users);
     }
 
     public String getPassword(String username) {

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UserOutput {
 
-    public void listAllUsers(List<UserDB> users) {
+    public void listAllUsers(List<User> users) {
         if (!users.isEmpty()) {
             CW.newLine();
             CW.print("*User information*");
