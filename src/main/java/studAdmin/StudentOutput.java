@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class StudentOutput {
-    private int i;
     private String program;
 
     public StudentOutput() {
