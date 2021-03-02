@@ -3,7 +3,19 @@
 Maybe add a forgot password function or something??
 
 
+IMPORT STUFF INTO SPRING BOOT
+START FROM CLONING LOGIN TEMPLATE
+- figure out to redirect to admin menu if admin
+- otherwise redirect to secretary menu
+- passwords are already encrypted
 
+
+html:
+- design home, adminfeatures (maybe in navbar), listfunctions,
+
+add SECRETARY to roles.mysql script
+
+everything else
 
 
 
