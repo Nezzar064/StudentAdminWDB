@@ -35,6 +35,7 @@ public class Menu {
         String password = UserInput.in.nextLine();
         CW.newLine();
 
+
         try {
             verifyPassword(controller.getPassword(username), password, controller.getAdminStatus(username), controller.getSalt(username), username);
         } catch (NoResultException e) {
